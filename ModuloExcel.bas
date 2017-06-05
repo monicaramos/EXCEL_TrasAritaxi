@@ -13,7 +13,7 @@ Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Lo
 Public Function GetExcel() As Byte
 Dim Ind As Integer
 Dim I As Integer
-Dim aux As String
+Dim Aux As String
 
 ' Prueba para ver si hay una copia de Microsoft Excel ejecutándose.
     On Error Resume Next    ' Inicializa la interceptación del error.
@@ -40,14 +40,14 @@ Err.Clear   ' Borra el objeto Err si se produce un error.
     
 
     MiXL.Workbooks.Open (NombreHoja)
-    aux = NombreHoja
+    Aux = NombreHoja
     Do
-        I = InStr(1, aux, "\")
-        If I > 0 Then aux = Mid(aux, I + 1)
+        I = InStr(1, Aux, "\")
+        If I > 0 Then Aux = Mid(Aux, I + 1)
     Loop Until I = 0
     Ind = 1
     For I = 1 To MiXL.Workbooks.Count
-        If MiXL.Workbooks(I).Name = aux Then
+        If MiXL.Workbooks(I).Name = Aux Then
             Ind = I
             Exit For
         End If
@@ -99,7 +99,6 @@ Public Sub CerrarExcel()
 
     wrk.Save
     wrk.Close
-   
 
     If ExcelNoSeEjecutaba Then
         MiXL.Application.Quit
@@ -119,8 +118,8 @@ If GetExcel = 1 Then
     GoTo ErrorAbrirExcel
 End If
 'Si queremos que se vea descomentamos  esto
-MiXL.Application.visible = True
-MiXL.Parent.Windows(1).visible = True
+'MiXL.Application.visible = True
+'MiXL.Parent.Windows(1).visible = True
 
 Exit Function
 ErrorAbrirExcel:
@@ -151,14 +150,14 @@ End Function
 
 
 Private Function ColumnaProxima(ByRef Columna As Integer) As Integer
-Dim aux As Integer
+Dim Aux As Integer
 Select Case Columna
 Case 4, 6, 8, 10, 15
-    aux = Columna + 2
+    Aux = Columna + 2
 Case Else
-    aux = Columna + 1
+    Aux = Columna + 1
 End Select
-ColumnaProxima = aux
+ColumnaProxima = Aux
 End Function
 
 
@@ -177,7 +176,7 @@ End Function
 Public Function GetExcelPag(Pagina As Integer) As Byte
 Dim Ind As Integer
 Dim I As Integer
-Dim aux As String
+Dim Aux As String
 
 ' Prueba para ver si hay una copia de Microsoft Excel ejecutándose.
     On Error Resume Next    ' Inicializa la interceptación del error.
@@ -204,14 +203,14 @@ Err.Clear   ' Borra el objeto Err si se produce un error.
     
 
     MiXL.Workbooks.Open (NombreHoja)
-    aux = NombreHoja
+    Aux = NombreHoja
     Do
-        I = InStr(1, aux, "\")
-        If I > 0 Then aux = Mid(aux, I + 1)
+        I = InStr(1, Aux, "\")
+        If I > 0 Then Aux = Mid(Aux, I + 1)
     Loop Until I = 0
     Ind = 1
     For I = 1 To MiXL.Workbooks.Count
-        If MiXL.Workbooks(I).Name = aux Then
+        If MiXL.Workbooks(I).Name = Aux Then
             Ind = I
             Exit For
         End If

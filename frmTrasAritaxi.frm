@@ -5,12 +5,12 @@ Begin VB.Form frmTrasAritaxi
    ClientHeight    =   2355
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   7275
+   ClientWidth     =   8145
    Icon            =   "frmTrasAritaxi.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    ScaleHeight     =   2355
-   ScaleWidth      =   7275
+   ScaleWidth      =   8145
    StartUpPosition =   2  'CenterScreen
    Begin MSComDlg.CommonDialog CommonDialog1 
       Left            =   7260
@@ -25,51 +25,96 @@ Begin VB.Form frmTrasAritaxi
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   7335
+      Width           =   8145
       Begin VB.CommandButton Command3 
          Caption         =   "&Salir"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   5760
+         Left            =   6810
          TabIndex        =   4
-         Top             =   1920
+         Top             =   1830
          Width           =   1095
       End
       Begin VB.CommandButton Command2 
          Caption         =   "&Importar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   4500
+         Left            =   5550
          TabIndex        =   3
-         Top             =   1920
+         Top             =   1830
          Width           =   1095
       End
       Begin VB.TextBox Text5 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   180
          TabIndex        =   1
          Top             =   690
-         Width           =   6735
+         Width           =   7785
       End
       Begin VB.Label Label1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   0
          Left            =   240
          TabIndex        =   5
          Top             =   1230
          Visible         =   0   'False
-         Width           =   4695
+         Width           =   5775
       End
       Begin VB.Label Label1 
          Caption         =   "Fichero"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   1
          Left            =   180
          TabIndex        =   2
-         Top             =   450
-         Width           =   615
+         Top             =   390
+         Width           =   765
       End
       Begin VB.Image Image3 
          Height          =   240
-         Left            =   900
+         Left            =   1080
          Picture         =   "frmTrasAritaxi.frx":1782
          Top             =   420
          Width           =   240
@@ -158,6 +203,9 @@ Dim Notas As String
         Close #NF
         
         
+        End
+        
+        
     End If
     
 End Sub
@@ -176,7 +224,7 @@ Private Sub Form_Load()
     Limpiar
     Select Case EsImportaci
     Case 1
-        Caption = "Cargar Traspaso de Poste desde fichero excel"
+        Caption = "Cargar Traspaso de Llamadas desde Fichero Excel"
         FrameImportar.visible = True
 
     End Select
@@ -338,7 +386,16 @@ Dim LlevoFichero As Currency
         End If
         
         I = I + 1
+        
     Wend
+    
+    If Values <> "" Then
+        Values = Mid(Values, 1, Len(Values) - 1)
+        SQL = "INSERT INTO tmptaxi " & Linea & " VALUES " & Values
+        Conn.Execute SQL
+        Values = ""
+    End If
+    
     RecorremosLineasFicheroTraspaso = True
     Exit Function
             
@@ -399,7 +456,7 @@ Dim Vehiculo As String
             Error1 = 1
             Error = "codclien con formato incorrecto"
     Else
-            Values1 = Values1 & "," & CInt(Telefono)
+            Values1 = Values1 & "," & CInt(Telefono) + 10000
     End If
     
     Telefono = ExcelSheet.Cells(I, 13).Value
