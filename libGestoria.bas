@@ -32,7 +32,7 @@ Public Fichero As String
 Public Sub Main()
 Dim I As Integer
 
-' esto es una prueba
+' esto es una prueba de subida
 
 'Vemos si ya se esta ejecutando
 If App.PrevInstance Then
