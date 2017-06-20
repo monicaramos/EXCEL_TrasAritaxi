@@ -31,6 +31,9 @@ Public Fichero As String
 
 Public Sub Main()
 Dim I As Integer
+
+' esto es una prueba
+
 'Vemos si ya se esta ejecutando
 If App.PrevInstance Then
     MsgBox "Ya se está ejecutando el programa de traspaso a Excel (Tenga paciencia).", vbCritical
