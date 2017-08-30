@@ -179,10 +179,23 @@ Dim Notas As String
     NombreHoja = Text5.Text
     'Abrimos excel
     
+    
+    Me.Label1(0).visible = True
+    Me.Label1(0).Caption = "Abriendo fichero excel. Espere por favor."
+    
+    Me.Refresh
+    DoEvents
+    
     Rc = AbrirEXCEL
     
     If Rc = 0 Then
         If EsImportaci = 1 Then
+            
+            Me.Label1(0).Caption = "Abriendo conexión a la base de datos. Espere por favor."
+            
+            Me.Refresh
+            DoEvents
+            
             If AbrirConexion(BaseDatos) Then
                 
                 'Vamos linea a linea, buscamos su trabajador
@@ -207,6 +220,8 @@ Dim Notas As String
         
         
     End If
+    
+    Me.Label1(0).visible = False
     
 End Sub
 
@@ -428,13 +443,19 @@ Dim Vehiculo As String
     
     Fecha = Mid(FechaHora, 1, 10)
     Hora = Mid(FechaHora, 12, 8)
+    
+    '[Monica]02/08/2017: añadido
+    Fecha = ExcelSheet.Cells(I, 82).Value
+    Hora = ExcelSheet.Cells(I, 94).Value
+    FechaHora = Fecha & " " & Hora
+    
     Vehiculo = ExcelSheet.Cells(I, 19).Value 'Mid(menErrProceso, 293, 4)
 
 
     Error1 = 0
     Error = ""
     'armamos los registros segun la cadena
-    Telefono = ExcelSheet.Cells(I, 93).Value
+    Telefono = ExcelSheet.Cells(I, 14).Value '[Monica]02/08/2017: antes 93
     'telefono
     
     Values1 = I
@@ -456,7 +477,7 @@ Dim Vehiculo As String
             Error1 = 1
             Error = "codclien con formato incorrecto"
     Else
-            Values1 = Values1 & "," & CInt(Telefono) + 10000
+            Values1 = Values1 & "," & CInt(Telefono) ' + 10000 [Monica]02/08/2017: le quitamos el 10000
     End If
     
     Telefono = ExcelSheet.Cells(I, 13).Value
@@ -513,7 +534,7 @@ Dim Vehiculo As String
         Error1 = 1
         Error = "Vehiculo con formato incorrecto"
     Else
-        Values1 = Values1 & "," & CInt(Vehiculo) + 10000
+        Values1 = Values1 & "," & CInt(Vehiculo) '+ 10000 [Monica]02/08/2017: no le sumamos el 10000
     End If
 
     Telefono = ExcelSheet.Cells(I, 20).Value
@@ -639,6 +660,11 @@ Dim Vehiculo As String
     FechaHora = ExcelSheet.Cells(I, 94).Value
     Fecha = Mid(FechaHora, 1, 10)
     Hora = Mid(FechaHora, 12, 8)
+    
+    '[Monica]02/08/2017: añadido
+    Fecha = ExcelSheet.Cells(I, 82).Value
+    Hora = ExcelSheet.Cells(I, 94).Value
+    FechaHora = Fecha & " " & Hora
     
     'fecreser"
     If Fecha = "" Then

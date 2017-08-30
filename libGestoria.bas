@@ -50,7 +50,8 @@ End If
 
 'Si es importacion o creacion
 NombreHoja = Command
-'NombreHoja = "/I|aritaxi2|32000|C:\Users\Monica\Documents\documentacion Aritaxi\RadioTaxi\Servicios.xlsx|"
+'NombreHoja = "/I|aritaxi2|32000|C:\Users\MonicaVb6\Desktop\Aborrar\Extracción de Servicios JULIO 2017 3-8-17.xlsx|"
+'C:\Users\MonicaVb6\Desktop\Aborrar\Extracción de Servicios JULIO 2017 3-8-17.xlsx
 
 I = InStr(1, NombreHoja, "/")
 If I = 0 Then

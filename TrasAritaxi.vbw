@@ -1,5 +1,5 @@
 ModuloExcel = 104, 104, 869, 581, 
-libGestoria = 78, 78, 843, 555, Z
-CFGControl = 0, 0, 0, 0, C
+libGestoria = 12, 68, 777, 545, Z
+CFGControl = 104, 104, 1146, 559, 
 frmMensajes = 0, 0, 0, 0, C, 260, 260, 1000, 785, C
 frmTrasAritaxi = 104, 104, 869, 581, , 26, 26, 791, 503, C
